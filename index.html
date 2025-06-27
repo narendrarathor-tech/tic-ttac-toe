@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tic Tac Toe</h1>
+            <div class="scores">
+                <div class="score" id="player1-score">
+                    <i class="fas fa-user"></i>
+                    <span>Player X: 0</span>
+                </div>
+                <div class="score" id="ties">
+                    <i class="fas fa-handshake"></i>
+                    <span>Ties: 0</span>
+                </div>
+                <div class="score" id="player2-score">
+                    <i class="fas fa-robot"></i>
+                    <span>Player O: 0</span>
+                </div>
+            </div>
+        </header>
+        
+        <div class="game-controls">
+            <div class="mode-selector">
+                <button id="pvp-btn" class="active">Player vs Player</button>
+                <button id="pvc-btn">Player vs Computer</button>
+            </div>
+            <div class="status" id="status">Player X's turn</div>
+            <button id="restart-btn">Restart Game</button>
+        </div>
+        
+        <div class="game-board">
+            <div class="cell" data-index="0"></div>
+            <div class="cell" data-index="1"></div>
+            <div class="cell" data-index="2"></div>
+            <div class="cell" data-index="3"></div>
+            <div class="cell" data-index="4"></div>
+            <div class="cell" data-index="5"></div>
+            <div class="cell" data-index="6"></div>
+            <div class="cell" data-index="7"></div>
+            <div class="cell" data-index="8"></div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

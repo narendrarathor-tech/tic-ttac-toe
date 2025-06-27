@@ -1,0 +1,346 @@
+:root {
+    --primary: #3498db;
+    --secondary: #e74c3c;
+    --accent: #2ecc71;
+    --dark: #2c3e50;
+    --light: #ecf0f1;
+    --win-color: #2ecc71;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, transparent 20%, #ffffff22 20%, #ffffff11 60%, transparent 60%);
+    background-size: 20px 20px;
+    transform: rotate(30deg);
+    z-index: 0;
+}
+
+header {
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    color: var(--dark);
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: inline-block;
+}
+
+h1::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 10%;
+    width: 80%;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    border-radius: 2px;
+}
+
+.scores {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.score {
+    background: var(--light);
+    padding: 15px;
+    border-radius: 10px;
+    min-width: 140px;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.score i {
+    margin-right: 10px;
+    font-size: 1.4rem;
+}
+
+#player1-score {
+    color: var(--primary);
+}
+
+#player2-score {
+    color: var(--secondary);
+}
+
+#ties {
+    color: var(--dark);
+}
+
+.game-controls {
+    margin: 25px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.mode-selector {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.mode-selector button {
+    background: var(--light);
+    border: none;
+    padding: 12px 25px;
+    margin: 0 10px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: var(--dark);
+}
+
+.mode-selector button.active {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+#status {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 20px 0;
+    color: var(--dark);
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#restart-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+}
+
+#restart-btn:hover {
+    background: #27ae60;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 15px;
+    margin: 20px auto;
+    max-width: 400px;
+    position: relative;
+    z-index: 1;
+}
+
+.cell {
+    background: var(--light);
+    border-radius: 10px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.cell::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent 50%, rgba(255, 255, 255, 0.3) 100%);
+    z-index: 0;
+}
+
+.cell:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.cell.x {
+    color: var(--primary);
+}
+
+.cell.o {
+    color: var(--secondary);
+}
+
+.win-line {
+    position: relative;
+}
+
+.win-line::after {
+    content: "";
+    position: absolute;
+    background-color: var(--win-color);
+    border-radius: 5px;
+    z-index: 2;
+}
+
+.win-line.row-0::after {
+    width: 100%;
+    height: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+}
+
+.win-line.row-1::after {
+    width: 100%;
+    height: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+}
+
+.win-line.row-2::after {
+    width: 100%;
+    height: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+}
+
+.win-line.col-0::after {
+    width: 10px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+}
+
+.win-line.col-1::after {
+    width: 10px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+}
+
+.win-line.col-2::after {
+    width: 10px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+}
+
+.win-line.diag-0::after {
+    width: 120%;
+    height: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.win-line.diag-1::after {
+    width: 120%;
+    height: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.cell.x::after, .cell.o::after {
+    content: "";
+    position: absolute;
+    animation: popIn 0.3s ease-out;
+}
+
+.cell.x::after {
+    content: "X";
+}
+
+.cell.o::after {
+    content: "O";
+}
+
+@media (max-width: 500px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .cell {
+        height: 90px;
+        font-size: 3rem;
+    }
+    
+    .score {
+        min-width: 100px;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    #status {
+        font-size: 1.2rem;
+    }
+}
